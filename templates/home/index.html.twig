@@ -2,5 +2,11 @@
 
 
 {% block body %}
+
 {{activePage}}
+{% if activePage == 'admin' %}
+{{dump(app.user)}}
+{{app.user}}
+{% endif %}
+
 {% endblock %}

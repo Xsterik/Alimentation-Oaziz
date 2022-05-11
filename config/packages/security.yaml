@@ -9,7 +9,10 @@ security:
         memory_users:
             memory:
                 users:
-                    test: { password: '$2y$10$X6O9nWGNwy1Gmd0O5CfEp.RKThhiZ8KvHVwXu4vsCKlVnBNQVRAW6', roles: ['ROLE_ADMIN'] }
+                    Mathieu: {password : '$2y$10$Ref3QwNQXXPBzTCV5f7x6uGhQp8YL7cxkbsfjv9aqfz2HfgBum7Nu', roles : ['ROLE_ADMIN']}
+                    Sophie: {password : '$2y$10$5edrI3/9X6dEkyIi4kcL6exSWnWLjHiRs5qHfGF3PvHIyXj5jXLoS', roles : ['ROLE_ADMIN']}
+                    #  "%env(APP_USER2)%": { password: '%env(APP_PASSWORD2)%' }
+                    #  "%env(User_memory)%"
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -18,6 +21,18 @@ security:
             lazy: true
             # provider: users_in_memory
             provider: memory_users
+            custom_authenticator: App\Security\LoginAuthenticator
+            logout:
+                path: app_logout
+            
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: '%env(int:APP_LIFETIME)%'
+                path:     /
+                secure: true
+                signature_properties: [password]
+                # always_remember_me: true
+
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
