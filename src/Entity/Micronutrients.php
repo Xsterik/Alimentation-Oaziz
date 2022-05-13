@@ -18,15 +18,20 @@ class Micronutrients
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $type;
-
     #[ORM\ManyToMany(targetEntity: Aliments::class, inversedBy: 'micronutrients')]
     private $aliments;
+
+    #[ORM\ManyToOne(targetEntity: CatergoryMicronutrients::class, inversedBy: 'micronutrients')]
+    private $category;
 
     public function __construct()
     {
         $this->aliments = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -46,17 +51,6 @@ class Micronutrients
         return $this;
     }
 
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Aliments>
@@ -78,6 +72,18 @@ class Micronutrients
     public function removeAliment(Aliments $aliment): self
     {
         $this->aliments->removeElement($aliment);
+
+        return $this;
+    }
+
+    public function getCategory(): ?CatergoryMicronutrients
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?CatergoryMicronutrients $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

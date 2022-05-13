@@ -39,6 +39,22 @@ class AlimentsRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+    * @return Aliments[] Returns an array of Aliments objects
+    */
+   public function findBySearch($searchValue): array
+   {
+       return $this->createQueryBuilder('a')
+           ->andWhere('a.name like :val')
+           ->setParameter('val', '%'.$searchValue.'%')
+           ->orderBy('a.name', 'ASC')
+           ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+
+
 //    /**
 //     * @return Aliments[] Returns an array of Aliments objects
 //     */

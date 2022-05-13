@@ -1,12 +1,16 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
 
 {% block body %}
 
-{{activePage}}
-{% if activePage == 'admin' %}
-{{dump(app.user)}}
-{{app.user}}
-{% endif %}
+<h1>Accueil</h1>
 
 {% endblock %}

@@ -2,18 +2,48 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Nutriment Oaziz{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        
+        
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
+
         {% endblock %}
 
+        
         {% block javascripts %}
+
+        <script src="https://kit.fontawesome.com/de97e88153.js" crossorigin="anonymous"></script>
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
     <body>
+
+        <header>
+            <div class="topnav" id="myTopnav">
+                <a href="{{path('app_home')}}" class="active">Accueil</a>
+                <a href="{{path('app_aliments')}}">Aliments</a>
+                <a href="{{path('app_macronutrients')}}">Macronutriments</a>
+                <a href="{{path('app_micronutrientsType')}}">Micronutriments</a>
+                {# <div class="dropdown">
+                    <button class="dropbtn">Macro nutriment
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">Protéines</a>
+                        <a href="#">Glucides</a>
+                        <a href="#">Lipides</a>
+                    </div>
+                </div> #}
+                <a href="javascript:void(0);" class="icon" onclick="toogleHeader()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </header>
+
+
         {% block body %}{% endblock %}
     </body>
 </html>

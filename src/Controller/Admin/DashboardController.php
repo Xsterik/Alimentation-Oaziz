@@ -4,12 +4,18 @@ namespace App\Controller\Admin;
 
 use App\Entity\Aliments;
 use App\Entity\CategoryAliments;
+use App\Entity\CatergoryMicronutrients;
 use App\Entity\Micronutrients;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
+use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -42,12 +48,25 @@ class DashboardController extends AbstractDashboardController
             ->setTitle('Administration Nutriment Oaziz');
     }
 
+    public function configureUserMenu(UserInterface $user): UserMenu
+    {
+        return parent::configureUserMenu($user);
+    }
+
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Aliments', 'fa fa-apple-whole', Aliments::class);
         yield MenuItem::linkToCrud('Catégories Aliments', 'fa fa-apple-whole', CategoryAliments::class);
         yield MenuItem::linkToCrud('Micronutriments', 'fa fa-apple-whole', Micronutrients::class);
+        yield MenuItem::linkToCrud('Catégories Micronutriments', 'fa fa-apple-whole', CatergoryMicronutrients::class);
+        yield MenuItem::linkToUrl('Accueil', 'fa fa-home', $this->generateUrl('app_home'));
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+    }
+
+    public function configureActions(): Actions
+    {
+        return parent::configureActions()
+        ->add(Crud::PAGE_INDEX, Action::DETAIL);
     }
 }
