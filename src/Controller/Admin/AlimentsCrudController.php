@@ -6,6 +6,7 @@ use App\Entity\Aliments;
 use App\Entity\Micronutrients;
 use Doctrine\DBAL\Types\FloatType;
 use Doctrine\ORM\EntityRepository;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
@@ -23,6 +24,14 @@ class AlimentsCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Aliments::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+        ->setPageTitle('index','Aliments')
+        ->setPageTitle('new','Créer nouvel aliment')
+        ->setPageTitle('edit','Modification aliment');
     }
 
     
