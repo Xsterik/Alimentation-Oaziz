@@ -23,10 +23,10 @@
 
         <header>
             <div class="topnav" id="myTopnav">
-                <a href="{{path('app_home')}}" class="active">Accueil</a>
-                <a href="{{path('app_aliments')}}">Aliments</a>
-                <a href="{{path('app_macronutrients')}}">Macronutriments</a>
-                <a href="{{path('app_micronutrientsType')}}">Micronutriments</a>
+                <a href="{{path('app_home')}}"{% if activePage == 'home' %}class="active"{% endif %}>Accueil</a>
+                <a href="{{path('app_aliments')}}" {% if activePage == 'aliment' %}class="active"{% endif %}>Aliments</a>
+                <a href="{{path('app_macronutrients')}}" {% if activePage == 'macro' %}class="active"{% endif %}>Macronutriments</a>
+                <a href="{{path('app_micronutrientsType')}}" {% if activePage == 'micro' %}class="active"{% endif %}>Micronutriments</a>
                 {# <div class="dropdown">
                     <button class="dropbtn">Macro nutriment
                         <i class="fa fa-caret-down"></i>

@@ -15,3 +15,8 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+
+# Uploads
+public/uploads/aliments/*
+!public/uploads/aliments/.gitkeep 

@@ -10,8 +10,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Form\Type\TextEditorType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class AlimentsCrudController extends AbstractCrudController
@@ -26,6 +30,9 @@ class AlimentsCrudController extends AbstractCrudController
     {
         yield IdField::new('id', 'Id')->hideOnForm();
         yield TextField::new('name', 'Nom');
+        yield TextEditorField::new('description', 'Description')->onlyOnForms();
+        yield TextareaField::new('description', 'Description')->onlyOnDetail()->renderAsHtml();
+        yield ImageField::new('image', 'Image')->setBasePath('uploads/aliments')->setUploadDir('public/uploads/aliments')->setUploadedFileNamePattern('Aliment-[timestamp].[extension]');
         yield NumberField::new('protein', 'Protéines');
         yield NumberField::new('carbohydrate', 'Glucides');
         yield NumberField::new('lipid', 'Lipides');

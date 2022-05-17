@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Micronutriments | {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('micronutrients') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+{# {{dump(micronutrients)}} #}
+
+
+{# {{dump(micronutrients)}}
+{{dump(micros)}} #}
+<h1>Micronutriments</h1>
+
+<ul>
+{% for key, micronutrient in micronutrients %}
+    <h2><a href="{{path('app_micronutrients', {name: micronutrient.name})}}">{{micronutrient.name}}</a></h2>
+    {% if micros[micronutrient.name] is defined %}
+    {% for micro in micros[micronutrient.name] %}
+        <li>
+        <a href="{{path('app_micronutrient', {name: micro.name})}}">{{micro.name}}</a>
+        </li>
+    {% else %}
+        <li>Aucun élément renseigner</li>
+    {% endfor %}
+    
+    {% endif %}
+    {% else %}
+        <li>Aucun élément renseigner</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

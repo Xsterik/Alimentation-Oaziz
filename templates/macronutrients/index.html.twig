@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Macronutriments | {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{# <link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}"> #}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+{# {{dump(macronutrients)}} #}
+<h1>Macronutriments</h1>
+<ul>
+{% for key, macronutrient in macronutrients %}
+    <li>
+    <a href="{{path('app_macronutrient', {name: key})}}">{{macronutrient}}</a>
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}

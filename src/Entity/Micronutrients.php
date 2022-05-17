@@ -24,6 +24,12 @@ class Micronutrients
     #[ORM\ManyToOne(targetEntity: CatergoryMicronutrients::class, inversedBy: 'micronutrients')]
     private $category;
 
+    #[ORM\Column(type: 'text')]
+    private $description;
+
+    #[ORM\Column(type: 'text')]
+    private $bienfaits;
+
     public function __construct()
     {
         $this->aliments = new ArrayCollection();
@@ -84,6 +90,30 @@ class Micronutrients
     public function setCategory(?CatergoryMicronutrients $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getBienfaits(): ?string
+    {
+        return $this->bienfaits;
+    }
+
+    public function setBienfaits(string $bienfaits): self
+    {
+        $this->bienfaits = $bienfaits;
 
         return $this;
     }

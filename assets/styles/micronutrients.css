@@ -1,0 +1,17 @@
+h1,
+h2 {
+    margin: 15px 10px;
+}
+
+ul {
+    margin: 15px 20px;
+    list-style-type: none;
+}
+
+li {
+    margin: 10px 10px;
+}
+
+div.content {
+    margin: 15px 20px;
+}

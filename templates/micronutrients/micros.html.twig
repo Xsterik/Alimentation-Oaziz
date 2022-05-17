@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{catMicronutrient}} | {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('micronutrients') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+{# {{dump(catMicronutrient)}} #}
+<h1>{{catMicronutrient}}</h1>
+
+{% if micronutrient|length > 0 %}
+    <h2>Liste des éléments renseigné :</h2>
+    <ul>
+    {% for micro in micronutrient[micronutrient|keys |first] %}
+        <li>
+        <a href="{{path('app_micronutrient', {name: micro.name})}}">{{micro.name}}</a>
+        </li>
+    
+    {% endfor %}
+    </ul>
+    {% else %}
+    <ul>
+        <li>Aucun élément renseigner</li>
+    <ul>
+{% endif %}
+
+<div class="content">
+    <h2>Description :</h2>
+    {{catMicronutrient.description|raw}}
+</div>
+
+{% endblock %}

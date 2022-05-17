@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{micronutrient.name}} | {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('micronutrients') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+{# {{dump(micronutrient)}} #}
+<h1>{{micronutrient.category}} {{micronutrient.name}}</h1>
+
+
+<div class="content">
+    <h2>Description :</h2>
+    {{micronutrient.description|raw}}
+</div>
+
+<div class="content">
+    <h2>Bienfaits :</h2>
+    {{micronutrient.bienfaits|raw}}
+</div>
+{% endblock %}

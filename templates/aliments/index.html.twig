@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aliments | {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_link_tags('aliment') }}
+{% endblock %}
+
+{% block body %}
+
+{{form(form, {'method': 'GET'})}}
+
+
+<div {{stimulus_controller('aliments', {url: path('app_alimentSearch')})}} class="searchContainer">
+
+    <label for="searchAliment">Cherchez un aliment spécifique</label>
+    <div>
+    <input 
+    type="search"
+     name="searchAliment" 
+     id="searchAliment" 
+     value="" 
+     placeholder="Rechercher un aliment..."
+     data-action="aliments#onSearchInput"
+    >
+    <div class="search" data-aliments-target="search">
+    </div>
+    </div>
+</div>
+
+<p class="info">
+    Les valeurs des macro nutriments sont exprimer pour une quantitée de 100 grammes.
+</p>
+<table>
+    <thead>
+        <tr>
+            <th>
+                Aliment
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Type aliment
+            </th>
+            <th>
+                Saison optimale
+            </th>
+            <th>
+                Macronutriment
+            </th>
+            <th>
+                Micronutriment
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for key, aliment in aliments %}
+        <tr>
+            <td class="alignText">
+            <a href="{{path('app_aliment', {name: aliment.name})}}">{{aliment.name}}</a>
+            </td>
+
+            <td class="alignText">
+                <img src="{{asset('uploads/aliments/'~aliment.image)}}" alt="image de l'aliment {{aliment.name}}" class="imgAliment">
+            </td>
+
+            <td class="alignText">
+            {{aliment.categoryAliments}}
+            </td>
+
+            <td class="alignText">
+            {% for season in aliment.seasonsToConsume %}
+                {{season}} {% if not loop.last %}<br>{% endif %}
+            {% endfor %}
+            </td>
+
+            <td class="alignText">
+                {% include 'aliments/_macronutrientsShow.html.twig' with {aliment: aliment} %}
+            </td>
+
+            <td {#class="flex"#}>
+            {# {{aliment.name}} #}
+            {# micro #}
+            {# {{dump(micros)}} #}
+            {% include 'aliments/_micronutrientsShow.html.twig' with {microsKey: micros[key]} %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+
+
+
+{% endblock %}

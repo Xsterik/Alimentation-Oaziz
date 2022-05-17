@@ -1,0 +1,9 @@
+{# micros[key] #}
+{% for key2, micro in microsKey %}
+                <div>
+                <a href="{{path('app_micronutrients', {name: key2})}}">{{key2}}</a>:<br>
+                {% for elem in micro %}
+                    <a href="{{path('app_micronutrient', {name: elem})}}">{{elem}}</a>{% if not loop.last %}, {% endif %}
+                {% endfor %}
+                </div>
+{% endfor %}

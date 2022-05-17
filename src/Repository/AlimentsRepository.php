@@ -54,6 +54,44 @@ class AlimentsRepository extends ServiceEntityRepository
        ;
    }
 
+   /**
+    * @return Aliments[] Returns an array of Aliments objects
+    */
+    public function findByFilter($criteriaFilters): array
+    {
+        // return $this->createQueryBuilder('a')
+        //     ->andWhere('a.name like :val')
+        //     ->setParameter('val', '%'.$searchValue.'%')
+        //     ->orderBy('a.name', 'ASC')
+        //     ->setMaxResults(10)
+        //     ->getQuery()
+        //     ->getResult()
+        // ;
+        $result = $this->createQueryBuilder('a')
+        ->orderBy('a.id', 'ASC');
+
+        if(array_key_exists('categoryAliments', $criteriaFilters)){
+            dump($criteriaFilters['categoryAliments']);
+
+            $result->andWhere('a.categoryAliments = :val');
+            $result->setParameter('val', $criteriaFilters['categoryAliments']);
+        }
+
+        // if(array_key_exists('seasonsToConsume', $criteriaFilters)){
+        //     dump($criteriaFilters['seasonsToConsume']);
+
+            
+        //     $result->andWhere(':season IN (a.seasonsToConsume)')
+        //     ->setParameter('season', $criteriaFilters['seasonsToConsume']);
+        // }
+        
+        $zz = $result->getQuery()     
+                ->getResult();
+                dump($result);
+                dump($zz);
+        return  $zz;
+    }
+
 
 //    /**
 //     * @return Aliments[] Returns an array of Aliments objects

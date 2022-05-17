@@ -1,0 +1,21 @@
+
+<div class="searchContent">
+    {% for aliment in aliments %}
+    <div class="searchRow">
+        <a href="{{path('app_aliment', {name: aliment.name})}}">
+        <div class="flexSearch">
+            <div>
+            {{aliment.name}}
+            </div>
+            <div>
+            Protéines : {{aliment.protein}}g<br>
+            Glucides : {{aliment.carbohydrate}}g<br>
+            Lipides : {{aliment.lipid}}g
+            </div>
+        </div>
+        </a>
+    </div>
+    {% else %}
+    <div>Pas d'aliments trouver !</div>   
+    {% endfor %}
+</div>

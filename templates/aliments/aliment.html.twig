@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aliment | {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('aliment') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+<h1>{{aliment.name}}</h1>
+
+<div class="flexAliment">
+    <div>
+        <img src="{{asset('uploads/aliments/'~aliment.image)}}" alt="Image de l'aliment {{aliment.name}}">
+    </div>
+    <div>
+        <h2>Description :</h2>
+        {{aliment.description|raw}}
+    </div>
+    <div>
+    <h2>Macronutriments :</h2>
+         {% include 'aliments/_macronutrientsShow.html.twig' with {aliment: aliment} %}
+    </div>
+    <div>
+        <h2>Micronutriments :</h2>
+        {% include 'aliments/_micronutrientsShow.html.twig' with {microsKey: micro[0]} %}
+    </div>
+</div>
+{% endblock %}
