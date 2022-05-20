@@ -53,6 +53,9 @@
                 Saison optimale
             </th>
             <th>
+                Calories
+            </th>
+            <th>
                 Macronutriment
             </th>
             <th>
@@ -82,6 +85,9 @@
             {% endfor %}
             </td>
 
+            <td class="alignText">
+                {{aliment.calories}}Kcal
+            </td>
             <td class="alignText">
                 {% include 'aliments/_macronutrientsShow.html.twig' with {aliment: aliment} %}
             </td>

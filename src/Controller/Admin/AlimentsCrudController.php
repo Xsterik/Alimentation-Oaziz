@@ -42,6 +42,7 @@ class AlimentsCrudController extends AbstractCrudController
         yield TextEditorField::new('description', 'Description')->onlyOnForms();
         yield TextareaField::new('description', 'Description')->onlyOnDetail()->renderAsHtml();
         yield ImageField::new('image', 'Image')->setBasePath('uploads/aliments')->setUploadDir('public/uploads/aliments')->setUploadedFileNamePattern('Aliment-[timestamp].[extension]');
+        yield NumberField::new('calories', 'Calories');
         yield NumberField::new('protein', 'Protéines');
         yield NumberField::new('carbohydrate', 'Glucides');
         yield NumberField::new('lipid', 'Lipides');

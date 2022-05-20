@@ -24,6 +24,10 @@
         {{aliment.description|raw}}
     </div>
     <div>
+    <h2>Calories :</h2>
+         {{aliment.calories}}Kcal
+    </div>
+    <div>
     <h2>Macronutriments :</h2>
          {% include 'aliments/_macronutrientsShow.html.twig' with {aliment: aliment} %}
     </div>
